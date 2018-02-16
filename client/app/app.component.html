@@ -6,18 +6,20 @@
 
     <div class="collapse navbar-collapse">
       <ul class="nav navbar-nav">
-        <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">
-          <a [routerLink]="['/']">
+        <li routerLinkActive="active" routerLinkActiveOptions="{exact:true}">
+          <a routerLink="/">
             <i class="fa fa-home"></i> Home
           </a>
         </li>
-        <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">
-          <a [routerLink]="['/dictionary']">
+
+        <li routerLinkActive="active" routerLinkActiveOptions="{exact:true}">
+          <a routerLink="dictionary">
             <i class="fa fa-list"></i> Словарь
           </a>
         </li>
-        <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">
-          <a [routerLink]="['/testing']">
+
+        <li routerLinkActive="active" routerLinkActiveOptions="{exact:true}">
+          <a routerLink="testing">
             <i class="fa fa-question"></i> Тестирование
           </a>
         </li>

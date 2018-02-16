@@ -3,12 +3,12 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { BsModalModule } from 'ng2-bs3-modal';
 import { ModalModule } from 'ngx-modialog';
 import { BootstrapModalModule } from 'ngx-modialog/plugins/bootstrap';
+import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 
 // Modules
 import { RoutingModule } from './routing.module';
-import { SharedModule } from './shared/shared.module';
-
-import { AppComponent } from './app.component';
 
 // Pages
 import { AboutComponent } from './pages/about/about.component';
@@ -20,6 +20,8 @@ import { TestingComponent } from './pages/testing/testing.component';
 import { DictionaryService } from './services';
 import { StorageService } from './services/storage.service';
 
+import { AppComponent } from './app.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -30,11 +32,14 @@ import { StorageService } from './services/storage.service';
   ],
   imports: [
     RoutingModule,
-    SharedModule,
     NgxPaginationModule,
     BsModalModule,
     ModalModule.forRoot(),
-    BootstrapModalModule
+    BootstrapModalModule,
+    BrowserModule,
+    FormsModule,
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [
     DictionaryService,

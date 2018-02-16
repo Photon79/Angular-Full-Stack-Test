@@ -55,7 +55,7 @@
   </div>
 
   <bs-modal (onClose)="closed()" (onDismiss)="dismissed()" #modal>
-    <form #modalForm="ngForm">
+    <form>
       <bs-modal-header [showDismiss]="true">
         <h4 class="modal-title" *ngIf="!editMode">Добавление слова</h4>
         <h4 class="modal-title" *ngIf="editMode">Редактирование слова</h4>
@@ -66,6 +66,7 @@
           <label for="original">Оригинал (английский)</label>
           <input type="text" class="form-control" required [(ngModel)]="selectedWord.original" name="original" id="original">
         </div>
+
         <div class="form-group">
           <label for="translation">Перевод (русский)</label>
           <input type="text" class="form-control" required [(ngModel)]="selectedWord.translation" name="translation" id="translation">
@@ -81,5 +82,4 @@
       </bs-modal-footer>
     </form>
   </bs-modal>
-
 </div>

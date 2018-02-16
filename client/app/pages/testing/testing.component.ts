@@ -11,21 +11,22 @@ import { DictionaryService, StorageService } from '../../services';
 })
 export class TestingComponent {
   question = 1;
-  showResult = false;
+  public showResult = false;
+  public questions: Array<Word> = [];
 
   answer: string = null;
-  current: Word;
-  questions: Array<Word> = [];
-  items: Array<Word> = [];
+  current: Word = new Word();
 
   constructor(
     private dictionary: DictionaryService,
     private storage: StorageService
   ) {
-    if (!(this.questions = this.storage.load('questions'))) {
+    this.questions = this.storage.load('questions') || [];
+
+    if (!this.questions.length) {
       this.getData();
     } else {
-      this.showResult = this.storage.load('complete');
+      this.showResult = this.storage.load('complete') || false;
       this.question = this.storage.load('question');
       this.current = this.questions[this.question - 1];
     }
@@ -35,8 +36,8 @@ export class TestingComponent {
     this.question = 1;
 
     this.dictionary.getWords(true).subscribe(data => {
-      this.questions = this.items.map(word => {
-        const shuffled = without(this.shuffle(this.items), word);
+      this.questions = data.items.map(word => {
+        const shuffled = without(this.shuffle(data.items), word);
 
         word.answers = this.shuffle([
           word.translation,

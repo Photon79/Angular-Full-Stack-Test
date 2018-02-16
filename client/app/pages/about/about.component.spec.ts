@@ -24,9 +24,9 @@ describe('Component: About', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should display the string "About" in h4', () => {
-    const el = fixture.debugElement.query(By.css('h4')).nativeElement;
-    expect(el.textContent).toContain('About');
+  it('should display the string "Главная" in h3', () => {
+    const el = fixture.debugElement.query(By.css('h3')).nativeElement;
+    expect(el.textContent).toContain('Главная');
   });
 
 });
