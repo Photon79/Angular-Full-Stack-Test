@@ -1,0 +1,30 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title" *ngIf="showResult">Результаты тестирования</h3>
+    <h3 class="panel-title" *ngIf="!showResult">Тестирование</h3>
+  </div>
+
+  <div class="panel-body" *ngIf="!showResult && questions.length">
+    <h3>Переведите: <strong>{{current.original}}</strong></h3>
+
+    <ul class="questions">
+      <li *ngFor="let item of current.answers; let i = index;">
+        <label>{{item}} <input type="radio" [value]="current.answers[i]" [(ngModel)]="answer" (ngModelChange)="next()"/></label>
+      </li>
+    </ul>
+  </div>
+
+  <div class="panel-body" *ngIf="!questions.length">
+    Не найдено вопросов для тестирования
+  </div>
+
+  <div class="panel-body" *ngIf="showResult">
+    Ваш результат: <strong>{{getResults().rate}}%</strong><br />
+    Правильных ответов: <strong>{{getResults().count}}</strong><br />
+    <button class="btn btn-primary pull-right" (click)="clear()">Новое тестирование</button>
+  </div>
+
+  <div class="panel-footer" *ngIf="!showResult && questions.length">
+    <div>Вопрос <strong>{{question}}</strong> из <strong>{{questions.length}}</strong></div>
+  </div>
+</div>

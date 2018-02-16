@@ -1,0 +1,85 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Словарь</h3>
+  </div>
+
+  <div class="panel-body">
+    <table class="table table-striped">
+      <thead>
+        <th>Английский</th>
+        <th>Русский</th>
+        <th></th>
+      </thead>
+
+      <tbody *ngIf="!items.length">
+        <tr>
+          <td colspan="3">Ничего не найдено</td>
+        </tr>
+      </tbody>
+
+      <tbody *ngIf="items.length">
+        <tr
+          *ngFor="let word of items | paginate: {
+            itemsPerPage: pageSize,
+            currentPage: page,
+            totalItems: total }">
+          <td>{{word.original}}</td>
+          <td>{{word.translation}}</td>
+
+          <td>
+            <button class="btn" title="Редактировать" (click)="edit(word)">
+              <i class="fa fa-edit"></i>
+            </button>
+
+            <button class="btn btn-danger" title="Удалить" (click)="delete(word)">
+              <i class="fa fa-remove"></i>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="panel-footer">
+    <pagination-controls
+      class="pull-left"
+      (pageChange)="pageChanged($event)"
+      maxSize="9"
+      directionLinks="true"
+      autoHide="true"
+      previousLabel="<"
+      nextLabel=">">
+    </pagination-controls>
+
+    <button class="btn btn-primary pull-right" (click)="add()">Добавить слово</button>
+  </div>
+
+  <bs-modal (onClose)="closed()" (onDismiss)="dismissed()" #modal>
+    <form #modalForm="ngForm">
+      <bs-modal-header [showDismiss]="true">
+        <h4 class="modal-title" *ngIf="!editMode">Добавление слова</h4>
+        <h4 class="modal-title" *ngIf="editMode">Редактирование слова</h4>
+      </bs-modal-header>
+
+      <bs-modal-body>
+        <div class="form-group">
+          <label for="original">Оригинал (английский)</label>
+          <input type="text" class="form-control" required [(ngModel)]="selectedWord.original" name="original" id="original">
+        </div>
+        <div class="form-group">
+          <label for="translation">Перевод (русский)</label>
+          <input type="text" class="form-control" required [(ngModel)]="selectedWord.translation" name="translation" id="translation">
+        </div>
+      </bs-modal-body>
+
+      <bs-modal-footer>
+        <button type="button" class="btn btn-default" (click)="modal.dismiss()">Отмена</button>
+
+        <button type="button" class="btn btn-primary" autofocus (click)="modal.close()">
+          {{ editMode ? 'Редактировать' : 'Добавить' }}
+        </button>
+      </bs-modal-footer>
+    </form>
+  </bs-modal>
+
+</div>

@@ -1,0 +1,28 @@
+.card-footer div {
+  line-height: 38px;
+  float: left;
+}
+
+.questions {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.questions li {
+  line-height: 40px;
+  padding-left: 10px;
+}
+
+.questions li:hover {
+  background-color: aquamarine;
+}
+
+.questions li label {
+  margin: 0 !important;
+  width: 100%;
+  cursor: pointer;
+}
+
+input[type=radio] {
+  visibility: hidden;
+}

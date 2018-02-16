@@ -1,0 +1,13 @@
+.table {
+  margin-bottom: 0;
+}
+
+.table td, table th {
+  line-height: 38px !important;
+  padding: 5px .75rem !important;
+}
+
+.table td:last-child, table th:last-child {
+  width: 100px;
+  text-align: center;
+}
